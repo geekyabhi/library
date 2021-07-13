@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-const UserSchema=mongoose.Schema({
+const AuthorSchema=mongoose.Schema({
     name:{
         type:String,
         require:true
@@ -20,14 +20,13 @@ const UserSchema=mongoose.Schema({
             ref:'Book'
         }
     ],
-    fine:{
-        type:Number,
-        default:0
+    description:{
+        type:String,
     }
 },{
     timestamps:true
 })
 
-const User=mongoose.model('User',UserSchema)
+const Author=mongoose.model('Author',AuthorSchema)
 
-module.exports=User
+module.exports=Author

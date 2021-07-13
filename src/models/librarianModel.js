@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-const UserSchema=mongoose.Schema({
+const LibrarianSchema=mongoose.Schema({
     name:{
         type:String,
         require:true
@@ -14,20 +14,13 @@ const UserSchema=mongoose.Schema({
         type:String,
         require:true
     },
-    booksIssued:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Book'
-        }
-    ],
-    fine:{
-        type:Number,
-        default:0
+    description:{
+        type:String,
     }
 },{
     timestamps:true
 })
 
-const User=mongoose.model('User',UserSchema)
+const Librarian=mongoose.model('Librarian',LibrarianSchema)
 
-module.exports=User
+module.exports=Librarian
