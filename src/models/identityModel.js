@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = mongoose.Schema(
+const IdentitySchema = mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -17,7 +17,7 @@ const UserSchema = mongoose.Schema(
 		},
 		role: {
 			type: String,
-			enum: ["admin", "librarian", "author", "user"],
+			enum: ["admin", "librarian", "author", "Identity"],
 			required: true,
 		},
 	},
@@ -26,6 +26,6 @@ const UserSchema = mongoose.Schema(
 	}
 );
 
-const User = mongoose.model("User", UserSchema);
+const Identity = mongoose.model("Identity", IdentitySchema);
 
-module.exports = User;
+module.exports = Identity;
