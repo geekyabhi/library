@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AuthorSchema = mongoose.Schema(
+const UserSchema = mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -17,18 +17,8 @@ const AuthorSchema = mongoose.Schema(
 		},
 		role: {
 			type: String,
-			enum: ["admin,librarian,visitor,user"],
-
+			enum: ["admin", "librarian", "author", "user"],
 			required: true,
-		},
-		booksIssued: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "Book",
-			},
-		],
-		description: {
-			type: String,
 		},
 	},
 	{
@@ -36,6 +26,6 @@ const AuthorSchema = mongoose.Schema(
 	}
 );
 
-const Author = mongoose.model("Author", AuthorSchema);
+const User = mongoose.model("User", UserSchema);
 
-module.exports = Author;
+module.exports = User;
