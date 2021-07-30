@@ -17,7 +17,7 @@ const IdentitySchema = mongoose.Schema(
 		},
 		role: {
 			type: String,
-			enum: ["admin", "librarian", "author", "Identity"],
+			enum: ["admin", "librarian", "author", "user"],
 			required: true,
 		},
 	},
