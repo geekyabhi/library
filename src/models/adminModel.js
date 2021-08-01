@@ -9,9 +9,9 @@ const adminModel = mongoose.Schema(
 		},
 	},
 	{
-		timestamp: true,
+		timestamps: true,
 	}
 );
 
-const Admin = mongoose.model("Admin", adminModel);
-module.exports = Admin;
+const Admins = mongoose.model("Admins", adminModel);
+module.exports = Admins;
