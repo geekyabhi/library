@@ -5,7 +5,7 @@ const adminModel = mongoose.Schema(
 		identity: {
 			type: mongoose.Schema.Types.ObjectId,
 			require: true,
-			ref: "Identity",
+			ref: "Identities",
 		},
 	},
 	{

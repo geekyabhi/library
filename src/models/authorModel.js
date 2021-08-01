@@ -5,7 +5,7 @@ const authorModel = mongoose.Schema(
 		identity: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
-			ref: "Identity",
+			ref: "Identities",
 		},
 		booksPublished: [
 			{

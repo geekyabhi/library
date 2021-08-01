@@ -8,7 +8,7 @@ const bookModel = mongoose.Schema(
 		},
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Author",
+			ref: "Authors",
 		},
 		section: {
 			type: mongoose.Schema.Types.ObjectId,

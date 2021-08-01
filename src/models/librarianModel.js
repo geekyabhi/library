@@ -5,12 +5,12 @@ const librarianModel = mongoose.Schema(
 		identity: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
-			ref: "Identity",
+			ref: "Identities",
 		},
 		sections: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "Section",
+				ref: "Sections",
 				required: true,
 			},
 		],
