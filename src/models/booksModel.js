@@ -10,6 +10,11 @@ const bookModel = mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Author",
 		},
+		section: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Sections",
+			required: true,
+		},
 	},
 	{
 		timestamps: true,

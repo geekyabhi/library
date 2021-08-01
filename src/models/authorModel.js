@@ -7,10 +7,12 @@ const authorModel = mongoose.Schema(
 			required: true,
 			ref: "Identity",
 		},
-		booksPublished: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Books",
-		},
+		booksPublished: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Books",
+			},
+		],
 	},
 	{
 		timestamps: true,
