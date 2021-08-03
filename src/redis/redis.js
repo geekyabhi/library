@@ -14,6 +14,6 @@ if (process.env.REDIS_HOST) {
 
 const redisClient = redis.createClient(REDIS_PORT);
 if (redisClient) {
-	console.log(`Redis running on port ${process.env.REDIS_PORT}`.yellow);
+	console.log(`Redis running on port ${REDIS_PORT}`.magenta);
 }
 module.exports = redisClient;

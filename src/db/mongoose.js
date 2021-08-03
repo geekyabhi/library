@@ -9,14 +9,14 @@ const connectDB = async () => {
 				useNewUrlParser: true,
 				useCreateIndex: true,
 			});
-			console.log(
-				`Mongodb connected at ${conn.connection.host}`.cyan.bold
-			);
+			// console.log(
+			// 	`Mongodb connected at ${conn.connection.host}`.cyan.bold
+			// );
 			resolve(conn);
 		} catch (e) {
-			console.log("MongoDB cannot be connected : ", e);
+			// console.log("MongoDB cannot be connected : ", e);
 			reject(e);
-			process.exit(1);
+			// process.exit(1);
 		}
 	});
 };
