@@ -10,7 +10,8 @@ const addIdentity = (name, email, password, role) => {
 			}
 			resolve({ savedIdentity: savedIdentity });
 		} catch (e) {
-			reject({ code: 500, error: "Server error" });
+			console.log(e);
+			reject({ code: 500, error: e._message });
 		}
 	});
 };

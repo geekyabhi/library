@@ -14,7 +14,7 @@ connectDB()
 	});
 
 const PORT = 5000;
-
+app.use(express.json());
 const identityRouter = require("./src/routes/identity");
 app.use("/api/identity", identityRouter);
 
