@@ -11,26 +11,15 @@ const add = async (req, res) => {
 				error: "Email already exist",
 			});
 		}
-		const { savedIdentity, error } = await addIdentity(
-			name,
-			email,
-			password,
-			role
-		);
-		if (error) {
-			return res.status(400).send({
-				success: false,
-				error: error,
-			});
-		}
+		const data = await addIdentity(name, email, password, role);
 		res.status(200).send({
 			success: true,
 			data: savedIdentity,
 		});
 	} catch (e) {
-		return res.status(500).send({
+		return res.status(e.code).send({
 			success: false,
-			error: e,
+			error: e.error,
 		});
 	}
 };

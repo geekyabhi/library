@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
-router.route("/").post();
+const { add } = require("../controllers/identity");
+router.route("/").post(add);
 
 module.exports = { route };

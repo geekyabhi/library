@@ -6,11 +6,11 @@ const addIdentity = (name, email, password, role) => {
 			const identity = new Identities({ name, email, password, role });
 			const savedIdentity = await identity.save();
 			if (!savedIdentity) {
-				reject({ error: "Enter valid entries" });
+				reject({ code: 400, error: "Enter valid entries" });
 			}
 			resolve({ savedIdentity: savedIdentity });
 		} catch (e) {
-			reject({ error: e });
+			reject({ code: 500, error: "Server error" });
 		}
 	});
 };

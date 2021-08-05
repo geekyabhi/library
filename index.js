@@ -15,6 +15,9 @@ connectDB()
 
 const PORT = 5000;
 
+const identtityRouter = require("./src/routes/identity");
+app.use("/api/identity", identtityRouter);
+
 app.listen(PORT, () => {
 	console.log(`Server started on port ${PORT}`.yellow);
 });
