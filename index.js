@@ -6,7 +6,7 @@ const app = express();
 require("./src/redis/redis");
 connectDB()
 	.then((conn) => {
-		console.log(`Mongodb connected at ${conn.connection.host}`.cyan.bold);
+		console.log(`Mongodb connected at ${conn.connection.host}`.cyan);
 	})
 	.catch((e) => {
 		console.log("MongoDB cannot be connected : ", e);
