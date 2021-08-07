@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/userModel");
+const Identities = require("../models/identityModel");
 
 const protect = async (req, res, next) => {
 	let token;
@@ -11,7 +11,9 @@ const protect = async (req, res, next) => {
 			try {
 				token = req.headers.authorization.split(" ")[1];
 				const decoded = jwt.verify(token, process.env.JWT_SECRET);
-				req.user = await User.findById(decoded.id).select("-password");
+				req.loggedIdentity = await Identities.findById(
+					decoded.id
+				).select("-password");
 				next();
 			} catch (error) {
 				console.error(error);
