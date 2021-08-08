@@ -33,6 +33,38 @@ const add = async (req, res) => {
 	}
 };
 
+const login = async (req, res) => {
+	try {
+		const { email, password } = req.body;
+
+		const identity = await Identities.findOne({ email });
+		console.log(identity);
+
+		if (identity && (await identity.matchPassword(password))) {
+			res.status(200).json({
+				success: true,
+				data: {
+					_id: identity._id,
+					name: identity.name,
+					email: identity.email,
+					token: generateToken(identity._id),
+				},
+			});
+		} else {
+			return res.status(401).json({
+				success: false,
+				error: "Wrong email or password",
+			});
+		}
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json({
+			success: false,
+			error: "Server error",
+		});
+	}
+};
+
 const getOne = async (req, res) => {
 	try {
 		const { id } = req.params;
@@ -74,4 +106,4 @@ const getOne = async (req, res) => {
 	}
 };
 
-module.exports = { add, getOne };
+module.exports = { add, getOne, login };
