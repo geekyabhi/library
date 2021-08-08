@@ -1,5 +1,5 @@
-const { response } = require("express");
 const Identities = require("../models/identityModel");
+const generateToken = require("../utils/generateToken");
 
 const add = async (req, res) => {
 	try {
@@ -14,17 +14,23 @@ const add = async (req, res) => {
 
 		const identity = new Identities({ name, email, password, role });
 		const savedIdentity = await identity.save();
-		if (!savedIdentity) {
-			return res.status(400).send({
+		if (savedIdentity) {
+			res.status(200).json({
+				success: true,
+				data: {
+					_id: savedIdentity._id,
+					name: savedIdentity.name,
+					role: savedIdentity.role,
+					email: savedIdentity.email,
+					token: generateToken(savedIdentity._id),
+				},
+			});
+		} else {
+			res.status(400).json({
 				success: false,
-				error: "Not valid data",
+				error: "Invalid user data",
 			});
 		}
-
-		res.status(200).send({
-			success: true,
-			data: savedIdentity,
-		});
 	} catch (e) {
 		return res.status(500).send({
 			success: false,
@@ -38,7 +44,6 @@ const login = async (req, res) => {
 		const { email, password } = req.body;
 
 		const identity = await Identities.findOne({ email });
-		console.log(identity);
 
 		if (identity && (await identity.matchPassword(password))) {
 			res.status(200).json({
@@ -47,6 +52,7 @@ const login = async (req, res) => {
 					_id: identity._id,
 					name: identity.name,
 					email: identity.email,
+					role: identity.role,
 					token: generateToken(identity._id),
 				},
 			});
@@ -81,7 +87,7 @@ const getOne = async (req, res) => {
 				error: "Unauthorized",
 			});
 		}
-		const identity = await Identities.findById(id);
+		const identity = await Identities.findById(id).select("-password");
 		if (!identity) {
 			return res.status(404).send({
 				success: false,
