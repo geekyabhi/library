@@ -5,6 +5,11 @@ const bookModel = mongoose.Schema(
 		name: {
 			type: String,
 			required: true,
+			unique: true,
+		},
+		link: {
+			type: String,
+			required: true,
 		},
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -13,7 +18,6 @@ const bookModel = mongoose.Schema(
 		section: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Sections",
-			required: true,
 		},
 	},
 	{

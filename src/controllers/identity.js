@@ -112,4 +112,4 @@ const getOne = async (req, res) => {
 	}
 };
 
-module.exports = { add, getOne, login };
+module.exports = { add, login };

@@ -14,6 +14,13 @@ const sectionModel = mongoose.Schema(
 				required: true,
 			},
 		],
+		librarian: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Librarians",
+				required: true,
+			},
+		],
 	},
 	{
 		timestamps: true,
