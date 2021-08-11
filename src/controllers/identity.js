@@ -1,4 +1,5 @@
 const Identities = require("../models/identityModel");
+const { createAdmin } = require("../utilityFunctions/admin");
 const generateToken = require("../utils/generateToken");
 
 const add = async (req, res) => {
@@ -12,17 +13,29 @@ const add = async (req, res) => {
 			});
 		}
 
+		let roleObject;
+
 		const identity = new Identities({ name, email, password, role });
 		const savedIdentity = await identity.save();
-		if (savedIdentity) {
+
+		if (savedIdentity.role === "admin") {
+			roleObject = await createAdmin(savedIdentity._id);
+		}
+
+		savedIdentity.roleObject = roleObject;
+
+		const newSavedIdentity = await savedIdentity.save();
+
+		if (newSavedIdentity) {
 			res.status(200).json({
 				success: true,
 				data: {
-					_id: savedIdentity._id,
-					name: savedIdentity.name,
-					role: savedIdentity.role,
-					email: savedIdentity.email,
-					token: generateToken(savedIdentity._id),
+					_id: newSavedIdentity._id,
+					name: newSavedIdentity.name,
+					role: newSavedIdentity.role,
+					email: newSavedIdentity.email,
+					roleObject: newSavedIdentity.roleObject,
+					token: generateToken(newSavedIdentity._id),
 				},
 			});
 		} else {

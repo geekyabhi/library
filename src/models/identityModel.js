@@ -20,6 +20,9 @@ const IdentitySchema = mongoose.Schema(
 			enum: ["admin", "librarian", "author", "user"],
 			required: true,
 		},
+		roleObject: {
+			type: Object,
+		},
 	},
 	{
 		timestamps: true,
