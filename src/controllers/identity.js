@@ -1,6 +1,7 @@
 const Identities = require("../models/identityModel");
 const { createAdmin } = require("../utilityFunctions/admin");
 const { createAuthor } = require("../utilityFunctions/author");
+const { createUser } = require("../utilityFunctions/user");
 const generateToken = require("../utils/generateToken");
 
 const add = async (req, res) => {
@@ -23,6 +24,8 @@ const add = async (req, res) => {
 			roleObject = await createAdmin(savedIdentity._id);
 		} else if (savedIdentity.role === "author") {
 			roleObject = await createAuthor(savedIdentity._id);
+		} else if (savedIdentity.role === "user") {
+			roleObject = await createUser(savedIdentity._id);
 		}
 
 		savedIdentity.roleObject = roleObject;
