@@ -1,4 +1,4 @@
-const express = require("express");
+const express = 
 const connectDB = require("./src/db/mongoose");
 require("dotenv").config({ path: "./dev.env" });
 require("colors");
